@@ -9,16 +9,13 @@ body {
     background-color: hsl(200, 100%, 85%);
     color: hsl(200, 100%, 10%);
     font-family: sans-serif;
+    background: url('background.jpg');
+    background-position-y: -105vh;
 }
 
 .blurred {
     filter: blur(3px);
     overflow: hidden;
-}
-
-.background {
-    background: url('background.jpg');
-    background-position-y: -105vh;
 }
 
 .header {
@@ -130,9 +127,9 @@ body {
 
 .github-logo {
     position: absolute;
-    scale: 1.2;
-    top: 1.5vmin;
-    left: 1.5vmin;
+    scale: 2.5;
+    top: 2.5vmin;
+    left: 2.5vmin;
 }
 
 .social-link {
@@ -142,4 +139,28 @@ body {
 
 .social-link:hover {
     opacity: 70%;
+}
+
+@media screen and (max-width: 500px) {
+    .day-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 75px);
+    }
+    .day-card {
+        padding: 0.25rem;
+    }
+    
+    .day-card-day {
+        font-size: 2vmin;
+    }
+
+    .github-logo {
+        scale: 1.25;
+        top: 1.5vmin;
+        left: 1.5vmin;
+    }
+
+    .title {
+        font-size: 6vmin;
+    }
 }
