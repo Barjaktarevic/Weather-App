@@ -142,6 +142,9 @@ body {
 }
 
 @media screen and (max-width: 500px) {
+    .header-current-temp {
+        font-size: 1.9rem;
+    }
     .day-section {
         display: grid;
         grid-template-columns: repeat(auto-fit, 75px);

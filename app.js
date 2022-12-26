@@ -21,7 +21,6 @@ async function getWeatherData(url) {
     const res = await fetch(url)
     const data = await res.json()
     weatherData = data
-    console.log(weatherData)
     updateCurrentTemp()
     updateDailyWeather()
     updateHourlyWeather()
