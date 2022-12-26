@@ -62,9 +62,9 @@ export function getWeatherIcon(weatherCode) {
 }
 
 export function formatDay(time) {
-    return new Intl.DateTimeFormat(undefined, { weekday: "long"}).format(time * 1000)
+    return new Intl.DateTimeFormat('hr', { weekday: "long"}).format(time * 1000)
 }
 
 export function formatHour(time) {
-    return new Intl.DateTimeFormat(undefined, { hour: "numeric"}).format(time * 1000)
+    return new Intl.DateTimeFormat('hr', { hour: "numeric"}).format(time * 1000)
 }

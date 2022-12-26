@@ -1,10 +1,23 @@
 import { updateIcon, updateValues, getWeatherIcon, formatDay, formatHour, updateValuesDay, updateIconDay, updateValuesHourly, updateIconHourly } from "./helpers.js"
 
-const url = "https://api.open-meteo.com/v1/forecast?latitude=45.55&longitude=18.69&hourly=temperature_2m,apparent_temperature,precipitation,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&timeformat=unixtime&timezone=Europe%2FBerlin"
+navigator.geolocation.getCurrentPosition(posSuccess, posError)
+
+async function posSuccess({ coords }) {
+    let latitude = await coords.latitude
+    let longitude = await coords.longitude
+    let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+    let url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,apparent_temperature,precipitation,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&timeformat=unixtime&timezone=${timezone}`
+    getWeatherData(url)
+}
+
+function posError(err) {
+    console.log(err)
+    alert('There was a problem getting your location. Please allow the application to access your location.')
+}
 
 let weatherData
 
-async function getWeatherData() {
+async function getWeatherData(url) {
     const res = await fetch(url)
     const data = await res.json()
     weatherData = data
@@ -14,8 +27,6 @@ async function getWeatherData() {
     updateHourlyWeather()
     document.body.classList.remove('blurred')
 }
-
-getWeatherData()
 
 function updateCurrentTemp() {
 
@@ -101,9 +112,6 @@ function updateDailyWeather() {
 const rowTemplate = document.querySelector('#hour-row-template')
 const tableBody = document.querySelector('[data-hour-section]')
 
-
-const HOUR_FORMATTER = new Intl.DateTimeFormat(undefined, { hour: "numeric"})
-
 async function updateHourlyWeather() {
 
     let { 
@@ -118,9 +126,8 @@ async function updateHourlyWeather() {
     let currentTime = await weatherData.current_weather.time * 1000
    
    time = time.filter(timestamp => timestamp * 1000 >= currentTime)
-  
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 30; i++) {
         const element = rowTemplate.content.cloneNode(true)
         updateValuesHourly(element, "[data-temp]", temp[i])
         updateValuesHourly(element, "[data-day]", formatDay(time[i]))

@@ -16,6 +16,11 @@ body {
     overflow: hidden;
 }
 
+.background {
+    background: url('background.jpg');
+    background-position-y: -105vh;
+}
+
 .header {
     display: flex;
     align-items: center;
@@ -43,7 +48,7 @@ body {
 }
 
 .header-current-temp {
-    font-size: 2rem;
+    font-size: 3rem;
     margin-left: 1rem;
 }
 
@@ -76,7 +81,7 @@ body {
 
 .day-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 75px);
+    grid-template-columns: repeat(auto-fit, 125px);
     gap: 0.5rem;
     justify-content: center;
     padding: 1rem;
@@ -88,11 +93,13 @@ body {
     align-items: center;
     border: 1px solid hsl(200, 100%, 10%);
     border-radius: .25rem;
-    padding: 0.25rem;
+    padding: 1.25rem;
+    background-color: white;
+    opacity: 95%;
 }
 
 .day-card-day {
-    font-size: 0.75rem;
+    font-size: 3vmin;
     color: hsl(200, 100%, 20%);
     margin-top: 0.5rem;
 }
@@ -104,13 +111,35 @@ body {
 }
 
 .hour-row {
-    background-color: hsl(200, 80%, 75%);
+    background-color: hsl(200, 80%, 92.5%);
 }
 
 .hour-row:nth-child(2n) {
-    background-color: hsl(200, 60%, 70%);
+    background-color: hsl(200, 60%, 80%);
 }
 
 .hour-row > td {
     padding: 0.25rem 0.5rem;
+}
+
+.title {
+    text-align: center;
+    font-family: sans-serif;
+    padding: 2vmin;
+}
+
+.github-logo {
+    position: absolute;
+    scale: 1.2;
+    top: 1.5vmin;
+    left: 1.5vmin;
+}
+
+.social-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    opacity: 70%;
 }

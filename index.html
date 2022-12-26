@@ -7,10 +7,18 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="sun.svg">
     <script src="app.js" defer type="module"></script>
+    <script src="https://kit.fontawesome.com/6c43641683.js" crossorigin="anonymous"></script>
     <title>Weather App</title>
 </head>
 <body class="blurred">
-    
+
+<div class="github-logo"> 
+    <a href="https://github.com/Barjaktarevic" class="social-link"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.facebook.com/uros.barjaktarevic.9/" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+</div>
+
+<div class="background">
+    <h1 class="title">Vremenska prognoza</h1>
     <header class="header">
 
         <div class="header-left">
@@ -97,22 +105,14 @@
             <div class="daily-temp">32&deg;</div>
         </div>
 
-      
     </section>
+</div>
 
     <table class="hour-section">
         <tbody data-hour-section>
             
         </tbody>
     </table>
-
-    <!-- <template id="day-card-template">
-        <div class="day-card">
-            <img class="weather-icon" data-icon>
-            <div class="day-card-day" data-date></div>
-            <div></span data-temp>32</span><span>&deg;</span></div>
-        </div>
-    </template> -->
 
     <template id="hour-row-template">
         <tr class="hour-row">
