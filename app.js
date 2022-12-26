@@ -1,21 +1,25 @@
 import { updateIcon, updateValues, getWeatherIcon, formatDay, formatHour, updateValuesDay, updateIconDay, updateValuesHourly, updateIconHourly } from "./helpers.js"
 
+let weatherData
+
 navigator.geolocation.getCurrentPosition(posSuccess, posError)
 
 async function posSuccess({ coords }) {
+    try {
     let latitude = await coords.latitude
     let longitude = await coords.longitude
     let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
     let url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,apparent_temperature,precipitation,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&timeformat=unixtime&timezone=${timezone}`
-    getWeatherData(url)
+    await getWeatherData(url)
+    } catch (err) {
+        alert('Greške pri dobavljanju prognoze.')
+    }
 }
 
 function posError(err) {
     console.log(err)
-    alert('There was a problem getting your location. Please allow the application to access your location.')
+    alert('Postoji problem s dobavljanjem vaše lokacije. Molim vas omogućite pristup vašoj lokaciji.')
 }
-
-let weatherData
 
 async function getWeatherData(url) {
     const res = await fetch(url)
